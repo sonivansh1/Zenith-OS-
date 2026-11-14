@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith OS — The Apex Desktop Companion</title>
+    <meta name="description" content="Zenith OS is a hyper-minimalist, high-performance AI desktop companion and dynamic island interface for Windows, created by Vansh Soni.">
+    <link rel="stylesheet" href="./styles.css">
+    <!-- Apple SF Pro typography & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ReactBits SideRays Volumetric Light Background (https://reactbits.dev/backgrounds/side-rays) -->
+    <div id="side-rays-container" class="side-rays">
+        <canvas id="side-rays-canvas" class="side-rays__canvas"></canvas>
+    </div>
+
+    <!-- Ambient Subtle Vignette Overlay -->
+    <div class="bg-vignette"></div>
+
+    <!-- Minimalist Apple Glass Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <span class="brand-pill"></span>
+                <span class="brand-name">Zenith OS</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#ai">AI Engine</a>
+                <a href="#workspaces">Workspaces</a>
+                <a href="#showcase">Gallery</a>
+                <a href="#install">Installation</a>
+                <a href="#specs">Architecture</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="nav-cta">
+                <a href="#install" class="btn-nav">Install Guide</a>
+                <!-- 3-line sidebar toggle button for Android / Mobile traverse -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Navigation Sidebar">
+                    <span class="menu-bar"></span>
+                    <span class="menu-bar"></span>
+                    <span class="menu-bar"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile / Android Slide-out Navigation Sidebar Drawer -->
+    <div class="mobile-sidebar-backdrop" id="mobileSidebarBackdrop"></div>
+    <aside class="mobile-sidebar" id="mobileSidebar" aria-label="Mobile Navigation">
+        <div class="mobile-sidebar-header">
+            <div class="nav-brand">
+                <span class="brand-pill"></span>
+                <span class="brand-name">Zenith OS</span>
+            </div>
+            <button class="mobile-sidebar-close" id="mobileSidebarClose" aria-label="Close Navigation Sidebar">✕</button>
+        </div>
+        <nav class="mobile-sidebar-links">
+            <a href="#features" class="mobile-nav-link"><span class="nav-ico">⚡</span> Features</a>
+            <a href="#ai" class="mobile-nav-link"><span class="nav-ico">🧠</span> AI Engine</a>
+            <a href="#workspaces" class="mobile-nav-link"><span class="nav-ico">🖥️</span> Workspaces</a>
+            <a href="#showcase" class="mobile-nav-link"><span class="nav-ico">🖼️</span> Interface Gallery</a>
+            <a href="#install" class="mobile-nav-link"><span class="nav-ico">💾</span> Installation Guide</a>
+            <a href="#specs" class="mobile-nav-link"><span class="nav-ico">📊</span> Specifications</a>
+            <a href="#contact" class="mobile-nav-link"><span class="nav-ico">👤</span> Contact (Vansh Soni)</a>
+        </nav>
+        <div class="mobile-sidebar-footer">
+            <a href="https://github.com/sonivansh1/Zenith-OS-/releases/tag/Zenith-OS" target="_blank" rel="noopener noreferrer" class="btn-primary mobile-cta-btn">Download Setup File</a>
+            <div class="mobile-sidebar-creator">Designed by Vansh Soni • Bhopal, India</div>
+        </div>
+    </aside>
+
+    <!-- Top Screen Dynamic Island Notch (Resting Cylindrical Pill) -->
+    <div class="island-simulator-wrapper" data-reveal="fade">
+        <div class="island-sim" id="islandSim">
+            <div class="island-sim-content" id="simContent">
+                <!-- Cylindrical Pill State -->
+                <div class="sim-compact" id="simCompact">
+                    <span class="sim-dot"></span>
+                    <span class="sim-title">Zenith OS</span>
+                    <div class="sim-wave">
+                        <span class="bar bar-1"></span>
+                        <span class="bar bar-2"></span>
+                        <span class="bar bar-3"></span>
+                        <span class="bar bar-4"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero-section" data-reveal="up">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Pure OLED Precision</span>
+        </div>
+        <h1 class="hero-title text-shimmer">
+            Precision at your screen’s edge.<br>
+            <span class="hero-gradient">Intelligent. Weightless. Pitch Black.</span>
+        </h1>
+        <p class="hero-subtitle">
+            Zenith OS transforms the top of your Windows display into a fluid dynamic island.
+            Equipped with Groq LLaMA 3.3 70B AI, Android 16 expressive media waveforms, smart workspace orchestration, and zero-latency hardware controls.
+        </p>
+        <div class="hero-actions">
+            <a href="#install" class="btn-primary magnetic-btn">Install Zenith OS</a>
+            <a href="#features" class="btn-secondary magnetic-btn">Explore Features</a>
+        </div>
+        <div class="hero-specs-pill">
+            <span>&lt; 85 MB RAM</span>
+            <span class="sep">•</span>
+            <span>60 FPS Fluid UI</span>
+            <span class="sep">•</span>
+            <span>0.0ms Fast-Path AI</span>
+            <span class="sep">•</span>
+            <span>Windows 10 / 11</span>
+        </div>
+    </header>
+
+    <!-- Highlighted Feature 1: The AI Architecture Showcase -->
+    <section class="section highlight-section" id="ai">
+        <div class="container">
+            <div class="section-badge" data-reveal="up">HYBRID INTELLIGENCE ARCHITECTURE</div>
+            <h2 class="section-title text-shimmer" data-reveal="up">The Dual-Core AI Architecture</h2>
+            <p class="section-desc" data-reveal="up">
+                Zenith OS pairs the reasoning intelligence of Groq LLaMA 3.3 70B with a deterministic, zero-latency local fast-path engine. 
+                Experience instant sub-millisecond hardware execution combined with voice-guided desktop automation.
+            </p>
+
+            <div class="ai-architecture-grid">
+                <!-- Spec Card 1: Sub-Millisecond Fast Path -->
+                <div class="ai-spec-card spotlight-card" data-reveal="up" data-delay="100">
+                    <div class="ai-spec-header">
+                        <div class="ai-spec-icon">⚡</div>
+                        <div>
+                            <h3>0.0ms Deterministic Fast-Path</h3>
+                            <span class="ai-spec-tag">Local Kernel Routing</span>
+                        </div>
+                    </div>
+                    <p class="ai-spec-body">
+                        Common hardware actions like volume calibration, display brightness, desktop workspaces, and session locking execute immediately through native Win32, CoreAudio, and WMI kernel APIs. No network calls, no waiting, 100% offline reliability.
+                    </p>
+                    <ul class="ai-spec-list">
+                        <li><span>✓</span> Instantaneous Master Volume &amp; Mute adjustments via WinMM.dll</li>
+                        <li><span>✓</span> Direct display luminance calibration via WmiMonitorBrightness</li>
+                        <li><span>✓</span> Zero external API dependency for local system controls</li>
+                    </ul>
+                </div>
+
+                <!-- Spec Card 2: Groq LLaMA 3.3 70B Cloud Brain -->
+                <div class="ai-spec-card spotlight-card" data-reveal="up" data-delay="150">
+                    <div class="ai-spec-header">
+                        <div class="ai-spec-icon">🧠</div>
+                        <div>
+                            <h3>Groq LLaMA 3.3 70B Engine</h3>
+                            <span class="ai-spec-tag">300+ Tokens / Second</span>
+                        </div>
+                    </div>
+                    <p class="ai-spec-body">
+                        When you need creative problem-solving, code debugging, knowledge lookup, or complex desktop workflow automation, Zenith OS routes your prompt to Groq’s ultra-high-speed LPU infrastructure for instantaneous completion.
+                    </p>
+                    <ul class="ai-spec-list">
+                        <li><span>✓</span> Context-aware reasoning and conversational intelligence</li>
+                        <li><span>✓</span> Natural language translation into system tasks</li>
+                        <li><span>✓</span> Easily configured with your own free Groq API key</li>
+                    </ul>
+                </div>
+
+                <!-- Spec Card 3: Whisper STT & Edge-TTS Speech -->
+                <div class="ai-spec-card spotlight-card" data-reveal="up" data-delay="200">
+                    <div class="ai-spec-header">
+                        <div class="ai-spec-icon">🎙️</div>
+                        <div>
+                            <h3>Whisper STT &amp; Edge-TTS Audio</h3>
+                            <span class="ai-spec-tag">Fluid Voice Interaction</span>
+                        </div>
+                    </div>
+                    <p class="ai-spec-body">
+                        Press or hold <code>Ctrl + Space</code> anywhere in Windows to trigger voice listening. Zenith OS transcribes your spoken commands with high accuracy and speaks back with crisp, human-sounding speech synthesis.
+                    </p>
+                    <ul class="ai-spec-list">
+                        <li><span>✓</span> Global push-to-talk hotkey (<code>Ctrl + Space</code>)</li>
+                        <li><span>✓</span> 3-bar reactive voice wave visualizer during speech</li>
+                        <li><span>✓</span> Studio-quality DSP audio filtering with zero clipping</li>
+                    </ul>
+                </div>
+
+                <!-- Spec Card 4: Local Privacy & Persistent Memory -->
+                <div class="ai-spec-card spotlight-card" data-reveal="up" data-delay="250">
+                    <div class="ai-spec-header">
+                        <div class="ai-spec-icon">🔒</div>
+                        <div>
+                            <h3>Persistent Local Memory</h3>
+                            <span class="ai-spec-tag">100% Client-Side Privacy</span>
+                        </div>
+                    </div>
+                    <p class="ai-spec-body">
+                        Zenith OS stores user preferences, project notes, and custom reminders locally inside your user profile (<code>~/.dynamic_island_settings.json</code>). No telemetry, no third-party tracking, and no data profiling.
+                    </p>
+                    <ul class="ai-spec-list">
+                        <li><span>✓</span> Client-side JSON storage with encrypted key fields</li>
+                        <li><span>✓</span> Zero telemetry or background surveillance</li>
+                        <li><span>✓</span> Complete user data ownership &amp; instant wipe option</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlighted Feature 2: Smart Workspaces Engine -->
+    <section class="section highlight-section" id="workspaces">
+        <div class="container">
+            <div class="section-badge" data-reveal="up">HIGHLIGHT • PRODUCTIVITY</div>
+            <h2 class="section-title text-shimmer" data-reveal="up">Smart Workspaces Orchestration</h2>
+            <p class="section-desc" data-reveal="up">
+                Stop hunting for open windows and re-arranging your displays. 
+                Snapshot entire desktop layouts into isolated workspaces and launch complete production setups with a single click or voice prompt.
+            </p>
+
+            <div class="workspaces-showcase">
+                <div class="ws-card spotlight-card" data-reveal="up" data-delay="100">
+                    <div class="ws-card-header">
+                        <span class="ws-icon">⚡</span>
+                        <div>
+                            <h3>Instant Multi-App Spawning</h3>
+                            <p>Win32, UWP, and Microsoft Store apps mapped through canonical AUMID identifiers.</p>
+                        </div>
+                    </div>
+                    <div class="ws-demo-box">
+                        <div class="ws-chip">VS Code</div>
+                        <span class="ws-plus">+</span>
+                        <div class="ws-chip">Terminal</div>
+                        <span class="ws-plus">+</span>
+                        <div class="ws-chip">Edge Dev</div>
+                        <span class="ws-plus">+</span>
+                        <div class="ws-chip">Docker</div>
+                    </div>
+                    <p class="ws-caption">One click launches your complete development environment into focus.</p>
+                </div>
+
+                <div class="ws-card spotlight-card" data-reveal="up" data-delay="200">
+                    <div class="ws-card-header">
+                        <span class="ws-icon">📸</span>
+                        <div>
+                            <h3>Live Desktop Snapshot</h3>
+                            <p>Capture active desktop state instantly without manual configuration.</p>
+                        </div>
+                    </div>
+                    <div class="ws-demo-box">
+                        <div class="ws-chip">Figma</div>
+                        <span class="ws-plus">+</span>
+                        <div class="ws-chip">Spotify</div>
+                        <span class="ws-plus">+</span>
+                        <div class="ws-chip">Slack</div>
+                    </div>
+                    <p class="ws-caption">Automatically tracks running processes and eliminates clutter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comprehensive Features Bento Grid -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-badge" data-reveal="up">ALL SUBSYSTEMS</div>
+            <h2 class="section-title text-shimmer" data-reveal="up">Built for Performance. Crafted for Flow.</h2>
+            <p class="section-desc" data-reveal="up">
+                Every component inside Zenith OS is engineered from scratch for minimal overhead, pure black OLED aesthetics, and immediate responsiveness.
+            </p>
+
+            <div class="features-bento-grid">
+                <!-- Bento: Autonomous Expressive Robot Companion Eyes -->
+                <div class="bento-card bento-wide spotlight-card" id="robot-eyes-showcase" data-reveal="up">
+                    <div class="bento-content">
+                        <div class="bento-tag">AI COMPANION • LIVING EMOTION</div>
+                        <h3>Autonomous Expressive Companion Robot Eyes</h3>
+                        <p>
+                            Zenith OS features a living, breathing vector robot companion built with a 60 FPS LERP physics engine. 
+                            It expresses 16 unique moods, blinks naturally, glances around your screen, and reacts dynamically to speech, music, and system status.
+                        </p>
+                        <div class="eyes-mood-controller">
+                            <span class="mood-title">Interactive Mood Controller:</span>
+                            <div class="mood-chips">
+                                <button class="mood-chip active" data-mood="neutral">Neutral Idle</button>
+                                <button class="mood-chip" data-mood="happy">Happy Arch</button>
+                                <button class="mood-chip" data-mood="love">Love Hearts</button>
+                                <button class="mood-chip" data-mood="stars">Star Sparkle</button>
+                                <button class="mood-chip" data-mood="wink">Wink</button>
+                                <button class="mood-chip" data-mood="listening">Voice Mic</button>
+                                <button class="mood-chip" data-mood="responding">AI Responding</button>
+                                <button class="mood-chip" data-mood="confused">Confused</button>
+                                <button class="mood-chip" data-mood="scanner">Focused Scanner</button>
+                                <button class="mood-chip" data-mood="shocked">Shocked</button>
+                                <button class="mood-chip" data-mood="offline">Dead Offline</button>
+                            </div>
+                        </div>
+                        <ul class="bento-list">
+                            <li>Event-driven 60 FPS LERP engine — automatically sleeps at 0.00% CPU when resting</li>
+                            <li>Voice reactive microphone mode with 3 pulsing sound-wave line visualizers</li>
+                            <li>Internet connectivity watchdog — morphs to red cross eyes during network absence</li>
+                        </ul>
+                    </div>
+                    <div class="bento-media eyes-card-visual">
+                        <div class="eyes-stage-frame">
+                            <canvas id="companionEyesCanvas" width="340" height="130"></canvas>
+                            <div class="eyes-interactive-hint">Hover to look • Click eyes to blink</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento 1: Android 16 Waveform -->
+                <div class="bento-card bento-wide spotlight-card" data-reveal="up">
+                    <div class="bento-content">
+                        <div class="bento-tag">MEDIA PLAYER</div>
+                        <h3>Android 16 Expressive Waveform Seek Bar</h3>
+                        <p>
+                            Replaces conventional circular slider thumbs with a series of 48 vertically varying organic waveform bars.
+                            Lit with glowing played segments and muted dark-grey tracks. Fully seekable via dragging and clicking.
+                        </p>
+                        <ul class="bento-list">
+                            <li>Dynamic radial ambient glow extracted from live album art</li>
+                            <li>Instant audio output device dropdown switching</li>
+                            <li>Wall-clock accurate elapsed time extrapolation on re-expansion</li>
+                        </ul>
+                    </div>
+                    <div class="bento-media">
+                        <img src="assets/snapshot_music_tab.png" alt="Zenith OS Media Player with Android 16 Waveform" class="bento-img">
+                    </div>
+                </div>
+
+                <!-- Bento 2: Pomodoro Focus Timer -->
+                <div class="bento-card spotlight-card" data-reveal="up" data-delay="100">
+                    <div class="bento-content">
+                        <div class="bento-tag">TIME MANAGEMENT</div>
+                        <h3>Pomodoro Focus & Break Timer</h3>
+                        <p>
+                            Seamless mode switching between Focus (25m) and Break (5m) with fine-grained stepper adjustments.
+                            Features minimalist compact hover controls (<code>⏸</code> Pause, <code>⏹</code> Stop, <code>›</code> Quick Actions).
+                        </p>
+                    </div>
+                    <div class="bento-media">
+                        <img src="assets/snapshot_timer_tab.png" alt="Zenith OS Pomodoro Timer" class="bento-img">
+                    </div>
+                </div>
+
+                <!-- Bento 3: System Telemetry & Sliders -->
+                <div class="bento-card spotlight-card" data-reveal="up" data-delay="200">
+                    <div class="bento-content">
+                        <div class="bento-tag">HARDWARE TELEMETRY</div>
+                        <h3>Real-Time System Metrics & Sliders</h3>
+                        <p>
+                            Ultra-smooth vertical capsule sliders for Volume and Brightness with zero-snapback interaction lockout.
+                            Includes live CPU, RAM, Network, Storage, Battery, and Uptime telemetry.
+                        </p>
+                    </div>
+                    <div class="bento-media">
+                        <img src="assets/snapshot_system_tab.png" alt="Zenith OS System Metrics" class="bento-img">
+                    </div>
+                </div>
+
+                <!-- Bento 4: 10-Item Clipboard Hub (Glitch Fixed) -->
+                <div class="bento-card spotlight-card" data-reveal="up" data-delay="100">
+                    <div class="bento-content">
+                        <div class="bento-tag">UTILITY</div>
+                        <h3>Instant Clipboard Hub (10-Item Cap)</h3>
+                        <p>
+                            Zero-overhead clipboard tracking keeping the last 10 copied snippets in clean card view. 
+                            Click any item to copy back instantly to active Windows clipboard, or delete individual entries.
+                        </p>
+                    </div>
+                    <div class="bento-media">
+                        <img src="assets/snapshot_clipboard_tab.png" alt="Zenith OS Clipboard Hub Glitch Fixed" class="bento-img">
+                    </div>
+                </div>
+
+                <!-- Bento 5: Dynamic Island States -->
+                <div class="bento-card spotlight-card" data-reveal="up" data-delay="200">
+                    <div class="bento-content">
+                        <div class="bento-tag">MICRO-INTERACTIONS</div>
+                        <h3>Fluid Dynamic Island States</h3>
+                        <p>
+                            Morphs smoothly between Compact Idle Pill, Hover Controls Preview, and the Full Glass Dashboard.
+                            Features an organic idle audio wave that responds to music rhythmically and unobtrusively.
+                        </p>
+                    </div>
+                    <div class="bento-media">
+                        <img src="assets/snapshot_timer_hover.png" alt="Zenith OS Timer Hover Controls" class="bento-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dedicated Visual Installation Guide Section (Rewritten for Standalone Setup) -->
+    <section class="section install-section" id="install">
+        <div class="container">
+            <div class="section-badge" data-reveal="up">SETUP & DEPLOYMENT</div>
+            <h2 class="section-title text-shimmer" data-reveal="up">Installation & Setup Guide</h2>
+            <p class="section-desc" data-reveal="up">
+                Get Zenith OS up and running on your Windows workstation in seconds with the official standalone installer — no Python or manual setup required.
+            </p>
+
+            <div class="install-stepper" data-reveal="up">
+                <!-- Stepper Navigation -->
+                <div class="stepper-nav">
+                    <button class="step-tab active" data-step="1">
+                        <span class="step-num">01</span>
+                        <span class="step-label">Download Setup</span>
+                    </button>
+                    <button class="step-tab" data-step="2">
+                        <span class="step-num">02</span>
+                        <span class="step-label">Setup Wizard</span>
+                    </button>
+                    <button class="step-tab" data-step="3">
+                        <span class="step-num">03</span>
+                        <span class="step-label">Launch &amp; AI Setup</span>
+                    </button>
+                    <button class="step-tab" data-step="4">
+                        <span class="step-num">04</span>
+                        <span class="step-label">Hotkeys &amp; Tips</span>
+                    </button>
+                </div>
+
+                <!-- Stepper Content Cards -->
+                <div class="stepper-card spotlight-card">
+                    <!-- Step 1 -->
+                    <div class="step-pane active" id="step-pane-1">
+                        <div class="step-pane-header">
+                            <span class="step-badge">Phase 1</span>
+                            <h3>Download Zenith_OS_Setup.exe</h3>
+                        </div>
+                        <p class="step-text">
+                            Zenith OS is packaged into a single standalone Windows executable (~60.9 MB) with all GUI engines, speech synthesizers, and system drivers bundled:
+                        </p>
+                        <div class="setup-download-box">
+                            <div class="setup-file-info">
+                                <span class="setup-icon">💾</span>
+                                <div>
+                                    <div class="setup-file-name">Zenith_OS_Setup.exe</div>
+                                    <div class="setup-file-meta">Single-file standalone installer • 60.9 MB • Windows 10 &amp; 11 (64-bit)</div>
+                                </div>
+                            </div>
+                            <a href="https://github.com/sonivansh1/Zenith-OS-/releases/tag/Zenith-OS" target="_blank" rel="noopener noreferrer" class="btn-primary magnetic-btn setup-download-btn">Download Setup (.exe)</a>
+                        </div>
+                        <div class="req-grid">
+                            <div class="req-item">
+                                <span class="req-icon">🪟</span>
+                                <div>
+                                    <h4>Operating System</h4>
+                                    <p>Windows 10 or Windows 11 (64-bit)</p>
+                                </div>
+                            </div>
+                            <div class="req-item">
+                                <span class="req-icon">📦</span>
+                                <div>
+                                    <h4>Installation Type</h4>
+                                    <p>Self-contained executable wizard</p>
+                                </div>
+                            </div>
+                            <div class="req-item">
+                                <span class="req-icon">⚡</span>
+                                <div>
+                                    <h4>Hardware Footprint</h4>
+                                    <p>&lt; 85 MB RAM &amp; standard GPU acceleration</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-pane" id="step-pane-2">
+                        <div class="step-pane-header">
+                            <span class="step-badge">Phase 2</span>
+                            <h3>Run the Inno Setup Wizard</h3>
+                        </div>
+                        <p class="step-text">
+                            Double-click <code>Zenith_OS_Setup.exe</code> on your desktop or in your downloads folder to open the guided installer:
+                        </p>
+                        <ol class="step-instructions">
+                            <li>Select your destination folder (defaults to <code>C:\Program Files\Zenith OS</code>).</li>
+                            <li>Check <strong>"Create a desktop shortcut"</strong> for quick one-click access.</li>
+                            <li>Check <strong>"Start Zenith OS automatically with Windows"</strong> (recommended for always-available dynamic island).</li>
+                            <li>Click <strong>Install</strong> — setup completes in less than 5 seconds.</li>
+                        </ol>
+                        <div class="code-wrapper" style="margin-top: 16px;">
+                            <div class="code-header">
+                                <span class="code-dot red"></span>
+                                <span class="code-dot yellow"></span>
+                                <span class="code-dot green"></span>
+                                <span class="code-title">Silent Unattended Install (PowerShell / Terminal)</span>
+                                <button class="copy-btn" data-target="code-silent-install">Copy Command</button>
+                            </div>
+                            <pre class="code-block" id="code-silent-install"><code>.\Zenith_OS_Setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-pane" id="step-pane-3">
+                        <div class="step-pane-header">
+                            <span class="step-badge">Phase 3</span>
+                            <h3>Launch &amp; Configure AI (Optional)</h3>
+                        </div>
+                        <p class="step-text">
+                            Launch Zenith OS from your Desktop shortcut or Start Menu. The dynamic island will anchor smoothly to the top of your display:
+                        </p>
+                        <ol class="step-instructions">
+                            <li><strong>Ready Out-of-the-Box:</strong> Hardware controls (volume, brightness, screen lock), workspaces, media waveform, and focus timer work immediately offline with 0.0ms latency.</li>
+                            <li><strong>Optional Cloud AI Intelligence:</strong> To enable Groq LLaMA 3.3 70B reasoning and Whisper voice recognition:
+                                <ul>
+                                    <li>Get a free key from <a href="https://console.groq.com" target="_blank" class="accent-link">console.groq.com</a>.</li>
+                                    <li>Click the <strong>Settings icon (⚙)</strong> on the island (or right-click the system tray icon).</li>
+                                    <li>Paste your API key in the <strong>Groq API Key</strong> field and click <strong>Save &amp; Close</strong>.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-pane" id="step-pane-4">
+                        <div class="step-pane-header">
+                            <span class="step-badge">Phase 4</span>
+                            <h3>Global Hotkeys &amp; Pro Tips</h3>
+                        </div>
+                        <p class="step-text">
+                            Master your workflow with zero-friction micro-interactions:
+                        </p>
+                        
+                        <!-- High Priority Pro Tip Requested by User -->
+                        <div class="step-tip highlight-tip" style="margin-bottom: 20px;">
+                            <strong>💡 Essential Pro Tip:</strong> Double click to hide on the very top! Double-click on the very top notch to instantly hide Zenith OS from your display, and double-click again to restore it.
+                        </div>
+
+                        <div class="hotkeys-grid">
+                            <div class="hotkey-card featured-hotkey">
+                                <div class="hotkey-combo">Double-Click Notch</div>
+                                <div class="hotkey-desc">Double click to hide on the very top (or unhide anytime)</div>
+                            </div>
+                            <div class="hotkey-card">
+                                <div class="hotkey-combo">Ctrl + Space</div>
+                                <div class="hotkey-desc">Toggle Voice Assistant &amp; AI prompt anywhere in Windows</div>
+                            </div>
+                            <div class="hotkey-card">
+                                <div class="hotkey-combo">Click Island Notch</div>
+                                <div class="hotkey-desc">Expands full OLED glass dashboard (Music, Timer, System, Workspaces)</div>
+                            </div>
+                            <div class="hotkey-card">
+                                <div class="hotkey-combo">Top Screen Hover</div>
+                                <div class="hotkey-desc">Reveals timer countdown &amp; quick media controls</div>
+                            </div>
+                            <div class="hotkey-card">
+                                <div class="hotkey-combo">Escape</div>
+                                <div class="hotkey-desc">Instantly collapses expanded dashboard to sleek compact pill</div>
+                            </div>
+                            <div class="hotkey-card">
+                                <div class="hotkey-combo">Mouse Leave</div>
+                                <div class="hotkey-desc">Automatically returns island to compact resting pill</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshot Showcase Gallery -->
+    <section class="section" id="showcase">
+        <div class="container">
+            <div class="section-badge" data-reveal="up">INTERFACE GALLERY</div>
+            <h2 class="section-title text-shimmer" data-reveal="up">Obsidian Pitch Black Aesthetic</h2>
+            <p class="section-desc" data-reveal="up">Inspect every view of Zenith OS rendered in native high-resolution OLED dark mode.</p>
+
+            <div class="gallery-wrapper spotlight-card" data-reveal="up">
+                <div class="gallery-nav">
+                    <button class="gallery-tab active" data-img="assets/snapshot_music_tab.png">Media Player</button>
+                    <button class="gallery-tab" data-img="assets/snapshot_timer_tab.png">Focus Timer</button>
+                    <button class="gallery-tab" data-img="assets/snapshot_system_tab.png">System Metrics</button>
+                    <button class="gallery-tab" data-img="assets/snapshot_workspaces_tab.png">Workspaces</button>
+                    <button class="gallery-tab" data-img="assets/snapshot_clipboard_tab.png">Clipboard Hub</button>
+                </div>
+                <div class="gallery-stage">
+                    <img src="assets/snapshot_music_tab.png" alt="Zenith OS UI Showcase" id="galleryMainImg" class="gallery-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture & Specifications Table -->
+    <section class="section" id="specs">
+        <div class="container">
+            <div class="section-badge" data-reveal="up">SPECIFICATIONS</div>
+            <h2 class="section-title text-shimmer" data-reveal="up">Engineered to be Weightless</h2>
+            <p class="section-desc" data-reveal="up">Performance metrics designed for gamers, developers, and power users who demand zero overhead.</p>
+
+            <div class="specs-table-container spotlight-card" data-reveal="up">
+                <table class="specs-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Zenith OS</th>
+                            <th>Conventional Overlays</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Memory Usage (RAM)</td>
+                            <td><span class="spec-highlight">&lt; 85 MB</span> (Aggressive auto-trim working set)</td>
+                            <td>350 MB - 1.2 GB (Electron/CEF bloat)</td>
+                        </tr>
+                        <tr>
+                            <td>Animation Engine</td>
+                            <td><span class="spec-highlight">60 FPS Hardware-Accelerated</span> (PyQt6 / QPainter)</td>
+                            <td>Laggy DOM transitions / 30 FPS drops</td>
+                        </tr>
+                        <tr>
+                            <td>Command Routing Latency</td>
+                            <td><span class="spec-highlight">0.0 ms</span> (Deterministic Fast-Path)</td>
+                            <td>1500 - 3000 ms (Cloud-dependent)</td>
+                        </tr>
+                        <tr>
+                            <td>AI Neural Model</td>
+                            <td><span class="spec-highlight">Groq LLaMA 3.3 70B</span> (Ultra-fast inference)</td>
+                            <td>Generic slow chat API</td>
+                        </tr>
+                        <tr>
+                            <td>Color Profile</td>
+                            <td><span class="spec-highlight">Pure OLED #000000</span> (0% light leakage)</td>
+                            <td>Standard washed-out dark gray</td>
+                        </tr>
+                        <tr>
+                            <td>Operating System</td>
+                            <td><span class="spec-highlight">Windows 10 / 11 64-bit</span></td>
+                            <td>Cross-platform compromises</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Me Section (Required by User) -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="section-badge" data-reveal="up">AUTHOR & CONTACT</div>
+            <h2 class="section-title text-shimmer" data-reveal="up">Designed & Crafted by Vansh Soni</h2>
+            <p class="section-desc" data-reveal="up">
+                Have questions, feature proposals, or want to collaborate on the future of desktop user interfaces? Reach out directly.
+            </p>
+
+            <div class="contact-grid">
+                <!-- Contact Card -->
+                <div class="contact-card spotlight-card" data-reveal="up" data-delay="100">
+                    <div class="author-header">
+                        <div class="author-avatar">VS</div>
+                        <div>
+                            <h3 class="author-name">Vansh Soni</h3>
+                            <p class="author-role">Creator & Lead Architect • Zenith OS</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-label">Email:</span>
+                        <a href="mailto:vanshsoni665566@gmail.com" class="contact-link">vanshsoni665566@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">LinkedIn:</span>
+                        <a href="https://www.linkedin.com/in/vanshsoni1/" target="_blank" rel="noopener noreferrer" class="contact-link">linkedin.com/in/vanshsoni1</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">GitHub:</span>
+                        <a href="https://github.com/sonivansh1" target="_blank" rel="noopener noreferrer" class="contact-link">github.com/sonivansh1</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Location:</span>
+                        <span class="contact-val">Bhopal, India</span>
+                    </div>
+                </div>
+
+                <!-- Interactive Message Form -->
+                <div class="contact-form-card spotlight-card" data-reveal="up" data-delay="200">
+                    <h3>Send a Direct Message</h3>
+                    <p class="form-desc">Fill out the form below to initiate direct correspondence.</p>
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Message simulation sent to vanshsoni665566@gmail.com!');">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" placeholder="Steve Jobs" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" placeholder="steve@apple.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message / Feedback</label>
+                            <textarea id="message" rows="4" placeholder="I love the Android 16 waveform seek bar in Zenith OS..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary form-submit magnetic-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimalist Apple-Style Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <span class="brand-pill small"></span>
+                <span>Zenith OS — Designed & Developed by <strong>Vansh Soni</strong></span>
+            </div>
+            <div class="footer-right">
+                <span class="footer-copy">© 2026 Zenith OS. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>
