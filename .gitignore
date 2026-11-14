@@ -1,0 +1,15 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# PyInstaller / packaging artifacts
+build/
+dist/
+*.spec
+
+# Runtime logs and local config
+*.log
+CRASH_LOG.txt
+.dynamic_island_settings.json
+.zenith_settings.json
+.zenith_workspaces.json
